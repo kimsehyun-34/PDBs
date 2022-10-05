@@ -1,7 +1,6 @@
 import discord
 import random
 
-bad = ['ㅅㅂ','시발','씨발','ㅂㅅ','ㅗ','병신','ㅄ']
 
 class chatbot(discord.Client):
 
@@ -30,15 +29,15 @@ class chatbot(discord.Client):
        
                  
         
-        if message.content.startswith('Ellis 오늘레식?'):
+        if message.content.startswith('Ellis 지금 게임ㄱ?') or message.content == ("Elli 게임하자"):
             randomNum = random.randrange(1, 3)
             if randomNum==1:
                 channel = message.channel
-                msg = "레식 각입니다."
+                msg = "ㄱㄱ 각입니다."
                 await channel.send(msg)
             else:
                 channel = message.channel
-                msg = "자러갑니다...."
+                msg = "ㄴㄴ 자러갑니다...."
                 await channel.send(msg)
 
 
@@ -68,6 +67,7 @@ class chatbot(discord.Client):
                     await message.channel.send("You can't divide with 0.") #바뀜
 
         message_contant=message.content
+        bad = ['ㅅㅂ','시발','씨발','ㅂㅅ','ㅗ','병신','ㅄ']
         for i in bad:
             if i in message_contant:
                 await message.channel.send('욕설 ㄴㄴ')
