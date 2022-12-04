@@ -1,14 +1,9 @@
 import discord
 import random
 
-
-class chatbot(discord.Client):
-
+class MyClient(discord.Client):
     async def on_ready(self):
-        game = discord.Game("내용")
-        await client.change_presence(status=discord.Status.online, activity=game)
-
-        print("연결완료")
+        print('Logged on as', self.user)
 
 
 
@@ -29,18 +24,16 @@ class chatbot(discord.Client):
        
                  
         
-        if message.content.startswith('Ellis 지금 게임ㄱ?') or message.content == ("Elli 게임하자"):
+        if message.content.startswith('Ellis 오늘레식?'):
             randomNum = random.randrange(1, 3)
             if randomNum==1:
                 channel = message.channel
-                msg = "ㄱㄱ 각입니다."
+                msg = "레식 각입니다."
                 await channel.send(msg)
             else:
                 channel = message.channel
-                msg = "ㄴㄴ 자러갑니다...."
+                msg = "자러갑니다...."
                 await channel.send(msg)
-
-
 
 
         if message.content == "Ellis 출력":
@@ -66,8 +59,8 @@ class chatbot(discord.Client):
                 except ZeroDivisionError:
                     await message.channel.send("You can't divide with 0.") #바뀜
 
-        message_contant=message.content
         bad = ['ㅅㅂ','시발','씨발','ㅂㅅ','ㅗ','병신','ㅄ']
+        message_contant=message.content
         for i in bad:
             if i in message_contant:
                 await message.channel.send('욕설 ㄴㄴ')
@@ -123,8 +116,8 @@ class chatbot(discord.Client):
             msg = "Ella is my sister.  ¯ \_(ツ)_/¯ "
             await channel.send(msg)
             return None
-        
 
-if __name__ == "__main__":
-    client = chatbot()
-    client.run("토큰")
+intents = discord.Intents.default()
+intents.message_content = True
+client = MyClient(intents=intents)
+client.run('토큰')
